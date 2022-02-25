@@ -16,8 +16,9 @@ paras.forEach( (item) => {
         e.target.classList.toggle('myp');
     });
 });
+
 const first = document.images[0];
-first.addEventListener('click', e => {
+first.addEventListener('click', (e) => {
     e.target.src="https://unsplash.it/199";
 });
 

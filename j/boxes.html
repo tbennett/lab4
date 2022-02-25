@@ -1,77 +1,79 @@
+<!-- @format -->
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Make Boxes using DOM methods</title>
-    <style>
-        .container {
-            border: 5px solid;
-            padding: 3rem;
-            display:grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            grid-gap:1rem;
-        }
-
-        .ball {
-            display:flex;
-            justify-content: center;
-            align-items: center;
-            text-align:center;
-            background-color: #333;
-            color: #ddd;
-            width: 100px;
-            height:100px;
-            border-radius:50%;
-        }
-    </style>
-</head>
-<body>
-    <section class="container">
-        
-    </section>
-
-    
-    <script>
-        // create shortcut ref for the section element
-        const container = document.querySelector('.container');
-
-        //make an element to add to the container
-        const ball = document.createElement('DIV');
-        ball.classList.add('ball');
-        const txt = document.createTextNode('ball prototype');
-        ball.appendChild(txt);
-
-        //add the newly create element to the page (inside container)
-        container.appendChild(ball);
-        console.log(ball.classList);
-
-        //add a button so reader can make balls too!
-        const btn = document.createElement('BUTTON');
-        const btnTxt = document.createTextNode('Make Balls');
-        btn.appendChild(btnTxt);
-        document.body.appendChild(btn);
-
-        //make button interactive
-        btn.addEventListener('click', renderBoxes);
-
-        function renderBoxes(e) {
-            const tempHolder = document.createDocumentFragment();
-
-            for(let i = 0;i < 10; i++) {
-                //make an element to add to the container
-                const ball2 = document.createElement('DIV');
-                ball2.classList.add('ball');
-                const txt2 = document.createTextNode('ball ' + i);
-                ball2.appendChild(txt2);
-
-                //add the newly create element to the page (inside container)
-                tempHolder.appendChild(ball2);
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Make Boxes using DOM methods</title>
+        <style>
+            .container {
+                border: 5px solid;
+                padding: 3rem;
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                grid-gap: 1rem;
             }
-            //container.innerHTML = '';
-            container.appendChild(tempHolder);
-        }
-    </script>
-</body>
+
+            .ball {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                background-color: #333;
+                color: #ddd;
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+            }
+        </style>
+    </head>
+    <body>
+        <section class="container"></section>
+
+        <script>
+            // create shortcut ref for the section element
+            const container = document.querySelector(".container");
+
+            //make an element to add to the container
+            const ball = document.createElement("DIV");
+            ball.classList.add("ball");
+            const txt = document.createTextNode("ball prototype");
+            ball.appendChild(txt);
+
+            //add the newly create element to the page (inside container)
+            container.appendChild(ball);
+            console.log(ball.classList);
+
+            //add a button so reader can make balls too!
+            const btn = document.createElement("BUTTON");
+            const btnTxt = document.createTextNode("Make Balls");
+            btn.appendChild(btnTxt);
+            //document.body.appendChild(btn); //<-- another option for adding btn
+            document.body.insertBefore(btn, container);
+
+            //make button interactive by adding event listener
+            btn.addEventListener("click", renderBoxes);
+
+            // "e" is automatically passed to the function by the event listener
+            function renderBoxes(e) {
+                const tempHolder = document.createDocumentFragment();
+
+                for (let i = 0; i < 10; i++) {
+                    //make an element to add to the container
+                    const ball2 = document.createElement("DIV");
+                    ball2.classList.add("ball");
+                    const txt2 = document.createTextNode("ball " + i);
+                    ball2.appendChild(txt2);
+
+                    //add the newly create element to the page (inside container)
+                    tempHolder.appendChild(ball2);
+                }
+
+                container.innerHTML = '';
+                container.appendChild(tempHolder);
+            }
+        </script>
+    </body>
 </html>
